@@ -1,0 +1,11 @@
+# アプリケーションのポート
+Port = "50011"
+PublicKeyPath = "./public-key.pem"
+[database]
+    # MySQL接続設定
+    User = "root"
+    Password = ""
+    Database = "go_vue"
+    Host  = "localhost"
+    Port = "3306"
+    Debug = true
