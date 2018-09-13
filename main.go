@@ -1,14 +1,18 @@
 package main
 
 import (
+	"flag"
+
 	"github.com/labstack/echo"
+	"github.com/labstack/echo/middleware"
 	"github.com/ryomak/go-vue-example/config"
 	"github.com/ryomak/go-vue-example/controllers"
-	"github.com/labstack/echo/middleware"
 )
 
 func init() {
-	if err := config.LoadConfig("config.toml"); err != nil {
+	filenPath := flag.String("config", "./config.toml", "path to config file")
+	flag.Parse()
+	if err := config.LoadConfig(*filenPath); err != nil {
 		panic(err)
 	}
 }
@@ -19,8 +23,8 @@ func main() {
 
 	e := echo.New()
 	e.Use(middleware.Logger())
-	e.File("/","public/index.html")
-	e.Static("/","public")
+	e.File("/", "public/index.html")
+	e.Static("/", "public")
 
 	controllers.AssignAPI(e.Group("/api/v1"), db)
 
