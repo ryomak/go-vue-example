@@ -11,6 +11,7 @@ type DBConfig struct {
 	Host     string
 	Port     string
 	Database string
+	Debug    bool
 }
 
 func InitDB(conf DBConfig) *gorm.DB {
@@ -20,6 +21,9 @@ func InitDB(conf DBConfig) *gorm.DB {
 	db, err := gorm.Open("mysql", param)
 	if err != nil {
 		panic(err)
+	}
+	if conf.Debug{
+		db = db.Debug()
 	}
 	return db
 }

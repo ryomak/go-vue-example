@@ -1,5 +1,5 @@
 # アプリケーションのポート
-Port = "50011"
+Port = "3000"
 PublicKeyPath = "./public-key.pem"
 [database]
     # MySQL接続設定
